@@ -9,7 +9,7 @@ Using starter code create a work day scheduler with the below functions:
 - The color scheme should change to match the current time highlighted in red, past times in grey and future time slots in green
 - The entries should be stored locally and should be persistent after refreshing the page once saved
 
-![password demo](./Images/Screenshot%202023-08-03%20160650.png)
+[password demo](./Images/Screenshot%202023-08-03%20160650.png)
 
 - Link to working URL: [Password Generator](https://csmith0414.github.io/work-day-scheduler/)
 
