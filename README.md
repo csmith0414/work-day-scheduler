@@ -11,7 +11,7 @@ Using starter code create a work day scheduler with the below functions:
 
 ![password demo](./Images/Screenshot%202023-08-03%20160650.png)
 
-- Link to working URL: [Password Generator](https://csmith0414.github.io/work_day_scheduler/)
+- Link to working URL: [Password Generator](https://csmith0414.github.io/work-day-scheduler/)
 
 ## Usage
 
