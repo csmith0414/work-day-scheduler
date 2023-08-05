@@ -23,56 +23,78 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 
-  var box1 = ('#hour-9');
-  var box2 = ('#hour-10');
-  var box3 = ('#hour-11');
-  var box4 = ('#hour-12');
-  var box5 = ('#hour-1');
-  var box12 = ('#hour-2');
-  var box11 = ('#hour-3');
-  var box10 = ('#hour-4');
-  var box9 = ('#hour-5');
+  //Setting values for each hour on the work day scheduler
+  var box9 = $('#hour-9').children('div');
+  var box10 = $('#hour-10').children('div');
+  var box11 = $('#hour-11').children('div');
+  var box12 = $('#hour-12').children('div');
+  var box1 = $('#hour-1').children('div');
+  var box2 = $('#hour-2').children('div');
+  var box3 = $('#hour-3').children('div');
+  var box4 = $('#hour-4').children('div');
+  var box5 = $('#hour-5').children('div');
 
-  var button9 = ('#btn9');
-  var button10 = ('#btn10');
-  var button11 = ('#btn11');
-  var button12 = ('#btn12');
-  var button1 = ('#btn1');
-  var button2 = ('#btn2');
-  var button3 = ('#btn3');
-  var button4 = ('#btn4');
-  var button5 = ('#btn5');
+  var entry9 = $('#hour-9').children('textarea');
+  var entry10 = $('#hour-10').children('textarea');
+  var entry11 = $('#hour-11').children('textarea');
+  var entry12 = $('#hour-12').children('textarea');
+  var entry1 = $('#hour-1').children('textarea');
+  var entry2 = $('#hour-2').children('textarea');
+  var entry3 = $('#hour-3').children('textarea');
+  var entry4 = $('#hour-4').children('textarea');
+  var entry5 = $('#hour-5').children('textarea');
 
+  //Setting values for each save button on the scheduler
+  var button9 = $('#btn9');
+  var button10 = $('#btn10');
+  var button11 = $('#btn11');
+  var button12 = $('#btn12');
+  var button1 = $('#btn1');
+  var button2 = $('#btn2');
+  var button3 = $('#btn3');
+  var button4 = $('#btn4');
+  var button5 = $('#btn5');
+
+  //setting values to be used within the functions 
   var boxes = [box1, box2, box3, box4, box5, box9, box10, box11, box12];
   var buttons = [button1, button2, button3, button4, button5, button9, button10, button11, button12];
-  var entries = ['Entry1', 'Entry2', 'Entry3', 'Entry4', 'Entry5', 'Entry9', 'Entry10', 'Entry11', 'Entry12']; 
+  var entries = [entry1, entry2, entry3, entry4, entry5, entry9, entry10, entry11, entry12];
 
 
-
+  //Used to get the current date at the top of the work day scheduler
   var currentDate = dayjs().format('dddd, MMMM DD ');
   $('#currentDay').text(currentDate);
 
-  var currentTime = dayjs().format('HH')
+  var currentTime = dayjs().hour()
 
-  function checkTime() { 
+  //Used to get the rotation of background color based on past, present or future and setting up persist data
+  function checkTime() {
     for (let i = 0; i < boxes.length; i++) {
-        if ((boxes[i].attr('data-hour')) > currentTime) {
+      console.log(boxes[i].attr("data-hour"), localStorage.getItem(boxes[i].attr('data-hour')))
+        entries[i].val(localStorage.getItem(boxes[i].attr('data-hour')))
+      
+      if ((boxes[i].attr('data-hour')) > currentTime) {
         boxes[i].removeClass('past present future');
         boxes[i].addClass('future');
-        } else if (parseInt(boxes[i].attr('data-hour')) === currentTime) {
+      } else if (parseInt(boxes[i].attr('data-hour')) === currentTime) {
         boxes[i].removeClass('past present future');
         boxes[i].addClass('present');
-        } else {
+      } else {
         boxes[i].removeClass('past present future');
         boxes[i].addClass('past');
-  }}};
+      }
 
-    buttons[i].addEventListener('click', function(event) {
-    event.preventDefault(); 
-    for (let i = 0; i < boxes.length && entries.length; i++) {    
-    if (boxes[i].val() !== '') {
-    localStorage.setItem(entries[i], boxes[i].val());
-}}});
+      //Used for local storage
+      buttons[i].on('click', function (event) {
+        localStorage.setItem(boxes[i].attr('data-hour'), entries[i].val());
+      });
+
+    
+    }
+  };
+
+
+
 
   checkTime();
 });
